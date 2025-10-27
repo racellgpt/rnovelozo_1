@@ -1,0 +1,670 @@
+/* Enhanced Student Management System - Unique Design */
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: #0f172a;
+    color: #e2e8f0;
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* Animated Background */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        radial-gradient(circle at 25% 25%, #1e293b 0%, transparent 50%),
+        radial-gradient(circle at 75% 75%, #0f766e 0%, transparent 50%),
+        radial-gradient(circle at 50% 50%, #1e1b4b 0%, transparent 50%);
+    z-index: -1;
+    animation: backgroundShift 20s ease-in-out infinite;
+}
+
+@keyframes backgroundShift {
+    0%, 100% { opacity: 0.4; }
+    50% { opacity: 0.6; }
+}
+
+/* Container with Glassmorphism */
+.container {
+    max-width: 1000px;
+    margin: 30px auto;
+    padding: 40px;
+    background: rgba(30, 41, 59, 0.7);
+    backdrop-filter: blur(20px);
+    border-radius: 24px;
+    border: 1px solid rgba(148, 163, 184, 0.2);
+    box-shadow: 
+        0 25px 50px -12px rgba(0, 0, 0, 0.8),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    position: relative;
+}
+
+/* Glowing border effect */
+.container::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg, #06b6d4, #8b5cf6, #ec4899, #06b6d4);
+    border-radius: 26px;
+    z-index: -1;
+    animation: borderGlow 4s linear infinite;
+    opacity: 0.7;
+}
+
+@keyframes borderGlow {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 100% 50%; }
+}
+
+/* Typography */
+h1 {
+    background: linear-gradient(135deg, #06b6d4, #8b5cf6);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-size: 3rem;
+    font-weight: 800;
+    text-align: center;
+    margin-bottom: 40px;
+    letter-spacing: -0.02em;
+    position: relative;
+    animation: titlePulse 3s ease-in-out infinite;
+}
+
+@keyframes titlePulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.02); }
+}
+
+h1::after {
+    content: '';
+    position: absolute;
+    bottom: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 120px;
+    height: 4px;
+    background: linear-gradient(90deg, #06b6d4, #8b5cf6, #ec4899);
+    border-radius: 2px;
+    animation: lineShimmer 2s ease-in-out infinite;
+}
+
+@keyframes lineShimmer {
+    0%, 100% { opacity: 0.5; width: 120px; }
+    50% { opacity: 1; width: 200px; }
+}
+
+/* Enhanced Alert */
+.alert {
+    padding: 18px 24px;
+    border-radius: 16px;
+    margin-bottom: 30px;
+    background: linear-gradient(135deg, rgba(16, 185, 129, 0.2), rgba(5, 150, 105, 0.1));
+    border: 1px solid rgba(16, 185, 129, 0.3);
+    color: #6ee7b7;
+    font-weight: 600;
+    position: relative;
+    backdrop-filter: blur(10px);
+    overflow: hidden;
+    animation: alertSlideIn 0.5s ease-out;
+}
+
+@keyframes alertSlideIn {
+    from { transform: translateY(-20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+.alert::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    animation: alertShine 2s infinite;
+}
+
+@keyframes alertShine {
+    0% { left: -100%; }
+    100% { left: 100%; }
+}
+
+.alert.hide {
+    animation: alertSlideOut 0.3s ease-in forwards;
+}
+
+@keyframes alertSlideOut {
+    to { transform: translateY(-20px); opacity: 0; }
+}
+
+/* Enhanced Add Student Button */
+a[href*="create"] {
+    display: inline-flex;
+    align-items: center;
+    background: linear-gradient(135deg, #ec4899, #8b5cf6);
+    color: white;
+    text-decoration: none;
+    padding: 14px 28px;
+    border-radius: 14px;
+    font-weight: 700;
+    font-size: 16px;
+    margin-bottom: 35px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 10px 25px rgba(236, 72, 153, 0.3);
+}
+
+a[href*="create"]::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s ease;
+}
+
+a[href*="create"]:hover::before {
+    left: 100%;
+}
+
+a[href*="create"]:hover {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 15px 35px rgba(236, 72, 153, 0.4);
+}
+
+/* Enhanced Student Header */
+.student-header {
+    display: grid;
+    grid-template-columns: 1fr 2fr 2fr 1.5fr 1fr;
+    gap: 20px;
+    background: linear-gradient(135deg, rgba(15, 23, 42, 0.8), rgba(30, 41, 59, 0.8));
+    color: #cbd5e1;
+    padding: 18px 24px;
+    border-radius: 16px;
+    font-weight: 600;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 20px;
+    border: 1px solid rgba(148, 163, 184, 0.2);
+    backdrop-filter: blur(10px);
+}
+
+/* Enhanced Student List */
+ul {
+    list-style: none;
+}
+
+li {
+    display: grid;
+    grid-template-columns: 4fr 1fr;
+    background: rgba(30, 41, 59, 0.6);
+    backdrop-filter: blur(15px);
+    margin-bottom: 16px;
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid rgba(148, 163, 184, 0.1);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    animation: listItemFadeIn 0.6s ease-out forwards;
+    opacity: 0;
+}
+
+@keyframes listItemFadeIn {
+    from { opacity: 0; transform: translateX(-30px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+li:nth-child(1) { animation-delay: 0.1s; }
+li:nth-child(2) { animation-delay: 0.2s; }
+li:nth-child(3) { animation-delay: 0.3s; }
+li:nth-child(4) { animation-delay: 0.4s; }
+li:nth-child(5) { animation-delay: 0.5s; }
+
+li:hover {
+    transform: translateY(-5px) scale(1.01);
+    border-color: rgba(6, 182, 212, 0.3);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+li::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(6, 182, 212, 0.1), transparent);
+    transition: left 0.6s ease;
+}
+
+li:hover::before {
+    left: 100%;
+}
+
+.student-info {
+    display: grid;
+    grid-template-columns: 1fr 2fr 2fr 1.5fr;
+    gap: 20px;
+    padding: 22px 24px;
+    align-items: center;
+}
+
+.student-info span {
+    color: #cbd5e1;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.student-info span:first-child {
+    font-family: 'Fira Code', monospace;
+    color: #06b6d4;
+    font-weight: 700;
+    font-size: 15px;
+}
+
+li:hover .student-info span {
+    color: #f8fafc;
+}
+
+.student-actions {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+
+    /* remove the unwanted background */
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+}
+
+
+/* Enhanced Action Buttons */
+.student-actions a, .back-link {
+    padding: 8px 16px;
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 13px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+    backdrop-filter: blur(5px);
+}
+
+.student-actions a[href*="show"], .back-link {
+    background: linear-gradient(135deg, #3b82f6, #06b6d4); /* Bright blue-cyan */
+    color: #ffffff;
+    border: 1px solid rgba(148, 163, 184, 0.3);
+}
+
+.student-actions a[href*="show"]:hover, .back-link:hover {
+    background: linear-gradient(135deg, #2563eb, #0891b2); /* Darker blue-cyan */
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+}
+
+.student-actions a[href*="edit"] {
+    background: linear-gradient(135deg, rgba(251, 146, 60, 0.8), rgba(249, 115, 22, 0.8));
+    color: white;
+    border: 1px solid rgba(251, 146, 60, 0.3);
+}
+
+.student-actions a[href*="edit"]:hover {
+    background: linear-gradient(135deg, #fb923c, #f97316);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(251, 146, 60, 0.4);
+}
+
+/* Enhanced Form Styles */
+.form-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 25px;
+    margin-bottom: 35px;
+}
+
+.form-table td {
+    vertical-align: top;
+    padding-right: 25px;
+}
+
+.form-table td:last-child {
+    padding-right: 0;
+}
+
+.form-table label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 700;
+    color: #cbd5e1;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.form-table input {
+    width: 100%;
+    padding: 14px 18px;
+    background: rgba(30, 41, 59, 0.6);
+    border: 2px solid rgba(148, 163, 184, 0.2);
+    border-radius: 12px;
+    color: #e2e8f0;
+    font-size: 16px;
+    font-weight: 500;
+    backdrop-filter: blur(10px);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.form-table input::placeholder {
+    color: #64748b;
+}
+
+.form-table input:focus {
+    outline: none;
+    border-color: #06b6d4;
+    box-shadow: 0 0 0 3px rgba(6, 182, 212, 0.1);
+    transform: translateY(-2px);
+}
+
+.form-table input:hover {
+    border-color: rgba(148, 163, 184, 0.4);
+}
+
+/* Enhanced Buttons */
+button[type="submit"] {
+    background: linear-gradient(135deg, #06b6d4, #0891b2);
+    color: white;
+    border: 2px solid #06b6d4;
+    padding: 14px 32px;
+    border-radius: 12px;
+    font-weight: 700;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    margin-right: 16px;
+    position: relative;
+    overflow: hidden;
+    backdrop-filter: blur(5px);
+}
+
+button[type="submit"]::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.6s ease, height 0.6s ease;
+}
+
+button[type="submit"]:hover::before {
+    width: 300px;
+    height: 300px;
+}
+
+button[type="submit"]:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 35px rgba(6, 182, 212, 0.4);
+}
+
+/* Enhanced Delete Button */
+.student-actions button[type="submit"] {
+    background: linear-gradient(135deg, #ef4444, #dc2626);
+    border-color: #ef4444;
+    padding: 8px 16px;
+    font-size: 13px;
+    margin: 0;
+}
+
+.student-actions button[type="submit"]:hover {
+    background: linear-gradient(135deg, #dc2626, #b91c1c);
+    box-shadow: 0 8px 20px rgba(239, 68, 68, 0.4);
+}
+
+/* Enhanced Student Details Table */
+.student-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    background: rgba(30, 41, 59, 0.6);
+    backdrop-filter: blur(15px);
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid rgba(148, 163, 184, 0.2);
+    margin-bottom: 35px;
+}
+
+.student-table th,
+.student-table td {
+    padding: 20px 24px;
+    text-align: left;
+    border-bottom: 1px solid rgba(148, 163, 184, 0.1);
+}
+
+.student-table th {
+    background: rgba(15, 23, 42, 0.8);
+    font-weight: 700;
+    color: #cbd5e1;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    width: 200px;
+}
+
+.student-table td {
+    color: #e2e8f0;
+    font-weight: 500;
+    font-size: 16px;
+}
+
+.student-table tr:last-child th,
+.student-table tr:last-child td {
+    border-bottom: none;
+}
+
+.student-table tr:hover {
+    background: rgba(6, 182, 212, 0.05);
+}
+
+/* Form Actions Styling */
+div[style*="text-align: center"] {
+    text-align: center;
+    margin-top: 40px;
+    padding-top: 30px;
+    border-top: 2px solid rgba(148, 163, 184, 0.1);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    body::before {
+        animation: none;
+    }
+    
+    .container {
+        margin: 15px 10px;
+        padding: 25px 20px;
+        border-radius: 20px;
+    }
+    
+    .container::before {
+        display: none;
+    }
+    
+    h1 {
+        font-size: 2.25rem;
+        margin-bottom: 30px;
+    }
+    
+    .student-header {
+        display: none;
+    }
+    
+    li {
+        grid-template-columns: 1fr;
+        margin-bottom: 20px;
+    }
+    
+    .student-info {
+        grid-template-columns: 1fr;
+        gap: 15px;
+        padding: 20px;
+        border-bottom: 1px solid rgba(148, 163, 184, 0.1);
+    }
+    
+    .student-actions {
+        justify-content: center;
+        border-left: none;
+        border-top: 1px solid rgba(148, 163, 184, 0.1);
+        flex-wrap: wrap;
+        gap: 10px;
+        padding: 20px;
+    }
+    
+    .form-table {
+        border-spacing: 0 20px;
+    }
+    
+    .form-table td {
+        display: block;
+        width: 100%;
+        padding-right: 0;
+        padding-bottom: 10px;
+    }
+}
+
+/* Loading Animation */
+@keyframes pageLoad {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.container {
+    animation: pageLoad 0.8s ease-out;
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(15, 23, 42, 0.8);
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(135deg, #06b6d4, #8b5cf6);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(135deg, #0891b2, #7c3aed);
+}
+
+/* Focus styles for accessibility */
+*:focus {
+    outline: 2px solid #06b6d4;
+    outline-offset: 2px;
+}
+
+/* Print styles */
+@media print {
+    body {
+        background: white;
+        color: black;
+    }
+    
+    body::before {
+        display: none;
+    }
+    
+    .container {
+        background: white;
+        box-shadow: none;
+        border: 1px solid #000;
+        margin: 0;
+        padding: 20px;
+    }
+    
+    .container::before {
+        display: none;
+    }
+    
+    .student-actions, a[href*="create"] {
+        display: none;
+    }
+    
+    h1 {
+        color: black;
+        -webkit-text-fill-color: initial;
+    }
+}
+
+/* === Normalize Save (button) and Back (anchor) in centered form footer ===
+   Safe override — add at the end of your CSS file. */
+div[style*="text-align: center"] button[type="submit"],
+div[style*="text-align: center"] .back-link {
+    box-sizing: border-box;        /* include borders in size */
+    display: inline-flex;          /* center content consistently */
+    align-items: center;
+    justify-content: center;
+    padding: 14px 32px;            /* same size for both */
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1;                /* prevents baseline shifts */
+    vertical-align: middle;
+    overflow: hidden;              /* hide button pseudo-element overflow */
+    text-decoration: none;         /* remove underline for anchor */
+}
+
+/* ensure spacing between buttons (doesn't change layout) */
+div[style*="text-align: center"] button[type="submit"] {
+    margin-right: 12px;            /* small gap to the Back button */
+}
+
+/* explicit styles for Back so it looks like your screenshot */
+div[style*="text-align: center"] .back-link {
+    background: linear-gradient(135deg, #3b82f6, #2563eb);
+    border: 2px solid #2563eb;
+    color: #fff;
+}
+
+/* Save button keep existing design but ensure consistency */
+div[style*="text-align: center"] button[type="submit"] {
+    /* this will match the Save colors you already have;
+       the rule is repeated to ensure exact parity with .back-link sizing */
+    background: linear-gradient(135deg, #06b6d4, #0891b2);
+    border: 2px solid #06b6d4;
+    color: #fff;
+}
