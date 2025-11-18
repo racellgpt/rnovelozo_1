@@ -1,61 +1,147 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
 
-## About Laravel
+## 🎓 Student and Section Management System
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+### 📘 Project Overview
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+The **Student and Section Management System** is a web-based application developed as part of the **Midterm Examination Project**. It allows users to manage student information and section details efficiently through a simple, user-friendly interface.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+This system enables adding, viewing, updating, and deleting (**CRUD**) records for both **Students** and **Sections**, promoting better organization of academic data.
 
-## Learning Laravel
+### 🎯 Objectives
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+  * To design and implement a functional PHP-based web system for managing student and section data.
+  * To perform CRUD operations (Create, Read, Update, Delete) using a MySQL database.
+  * To provide a responsive and intuitive user interface using HTML, CSS, and JavaScript.
+  * To demonstrate understanding of database integration and web application logic.
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+### ⚙️ Features / Functionality
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+#### 🧑‍🎓 Student Module
 
-## Laravel Sponsors
+The **Student** module allows the user to add and manage student information.
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+**Input Fields:**
 
-### Premium Partners
+| Field | Description |
+| :--- | :--- |
+| 🆔 ID Number | Unique identifier for each student |
+| 👤 Name | Full name of the student |
+| Ⓜ️ Middle Initial | Student's middle initial |
+| 📧 Email | Email address of the student |
+| 📞 Contact | Contact number of the student |
+| ⚙️ Actions | Edit or Delete student record |
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+**Functions:**
 
-## Contributing
+  * ➕ Add new student
+  * 👁️ View student list
+  * 📝 Edit existing records
+  * 🗑️ Delete student data
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+#### 🏫 Section Module
 
-## Code of Conduct
+The **Section** module allows the user to add and manage section/class details.
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+**Input Fields:**
 
-## Security Vulnerabilities
+| Field | Description |
+| :--- | :--- |
+| 🗂️ Section Code | Unique section identifier |
+| 🏷️ Section Name | Name or title of the section |
+| 📝 Description | Short description about the section |
+| 🚪 Room | Assigned classroom or location |
+| 👥 Capacity | Maximum number of students allowed |
+| ⚙️ Actions | Edit or Delete section record |
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+**Functions:**
 
-## License
+  * ➕ Add new section
+  * 👁️ View section list
+  * 📝 Edit existing section details
+  * 🗑️ Delete section data
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+### 🌿 System Flow
+
+1.  User opens the system via browser.
+2.  Navigates to either the **Student** or **Section** page.
+3.  Inputs data into the corresponding form fields.
+4.  Saves the record, which is then stored in the database.
+5.  Views, edits, or deletes data as needed.
+
+### 💻 Technologies Used
+
+| Technology | Purpose |
+| :--- | :--- |
+| HTML / CSS | Structure and styling of pages |
+| JavaScript | Front-end interactivity |
+| PHP | Server-side scripting and backend logic |
+| MySQL | Database management |
+| XAMPP / Apache | Local development environment |
+
+### 🧱 Database Structure
+
+#### 🧑‍🎓 Student Table
+
+| Column | Type | Description |
+| :--- | :--- | :--- |
+| id\_number | VARCHAR(20) | Primary key |
+| name | VARCHAR(100) | Student full name |
+| middle\_initial | CHAR(1) | Middle initial |
+| email | VARCHAR(100) | Email address |
+| contact | VARCHAR(15) | Contact number |
+
+#### 🏫 Section Table
+
+| Column | Type | Description |
+| :--- | :--- | :--- |
+| section\_code | VARCHAR(20) | Primary key |
+| section\_name | VARCHAR(100) | Section title |
+| description | TEXT | Details about the section |
+| room | VARCHAR(50) | Classroom name or number |
+| capacity | INT(11) | Number of students that can be enrolled |
+
+### 🚀 Installation Steps
+
+1.  Clone or **Download** this repository:
+
+    `git clone https://github.com/racellgpt/student-section-system.git`
+
+### 💡 Usage
+
+Open the system in your web browser.
+
+Navigate to the Student or Section page from the main menu. Use the **Add Form** to input details (student or section). Click **Save** to store data in the database. View, Edit, or Delete records from the displayed table. Manage both modules independently for organized data handling.
+
+**Example actions:** Add new student $\rightarrow$ Fill form $\rightarrow$ Save $\rightarrow$ Data appears in student list. Edit student $\rightarrow$ Update details $\rightarrow$ Save $\rightarrow$ Changes reflected immediately.
+
+### 📸 Screenshots / Code Snippets
+
+```php
+<?php
+// Insert new student record
+if(isset($_POST['add_student'])){
+    $sid = $_POST['id_number'];
+    $name = $_POST['name'];
+    $mi = $_POST['middle_initial'];
+    $email = $_POST['email'];
+    $contact = $_POST['contact'];
+
+    $query = "INSERT INTO students (id_number, name, middle_initial, email, contact) 
+              VALUES ('$sid', '$name', '$mi', '$email', '$contact')";
+
+    mysqli_query($conn, $query);
+}
+?>
+```
+
+### \#\#Contributors
+
+*Racell Jay C. Noveloz - Frontend Developer / IT Student \*Rapahael Galvez, Ramir Orario - Collaboration*
+
+### \#\#License
+
+This project is licensed under the MIT license.
+
+-----
+
